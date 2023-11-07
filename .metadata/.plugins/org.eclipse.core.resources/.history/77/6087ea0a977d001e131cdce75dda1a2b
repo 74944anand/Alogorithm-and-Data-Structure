@@ -1,0 +1,18 @@
+package main;
+
+import java.util.Scanner;
+
+public class main {
+
+	public static void main(String[] args) {
+		
+
+		int arr[] = new int[] { 22, 66, 44, 77, 11, 33, 55, 88, 99 };
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Enter number to be searched in array");
+		int num = sc.nextInt();
+		
+		
+	}
+	
+}
