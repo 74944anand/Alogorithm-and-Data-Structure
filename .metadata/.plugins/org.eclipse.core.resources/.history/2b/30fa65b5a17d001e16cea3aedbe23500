@@ -1,0 +1,45 @@
+package main;
+
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class recursion {
+
+	public static int binarySearch(int []x,int num,int left,int right) {
+	     if (left > right) {
+	            // The target is not in the array
+	            return -1;
+	        }
+
+	        int mid = left + (right - left) / 2; // Calculate the middle index
+
+	        if (x[mid] == num) {
+	            // Target found, return its index
+	            return mid;
+	        } else if (x[mid] < num) {
+	            // If the target is in the right half, search the right subarray
+	            return binarySearch(x, num, mid + 1, right);
+	        } else {
+	            // If the target is in the left half, search the left subarray
+	            return binarySearch(x, num, left, mid - 1);
+	        }
+	}
+	public static void main(String[] args) {
+		int arr[] = new int[] { 22, 66, 44, 77, 11, 33, 55, 88, 99 };
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Enter number to be searched in array");
+		int num = sc.nextInt();
+		
+		Arrays.sort(arr);
+		int left=0,right;
+		right=arr.length;
+		num= binarySearch(arr,num,left,right);
+		if (num == -1) {
+			System.out.println("Number not found");
+		} else {
+			System.out.println("Number found at index: " + num);
+		}
+		
+	}
+	
+}
