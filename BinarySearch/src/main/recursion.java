@@ -10,7 +10,7 @@ public class recursion {
 	            return -1;
 	        }
 
-	        int mid = (left+right) / 2; // Calculate the middle index
+	        int mid = (left+right) / 2;
 
 	        if (x[mid] == num) {
 	            return mid;
