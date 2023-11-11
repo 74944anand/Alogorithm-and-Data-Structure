@@ -14,12 +14,65 @@ public class doublyLinkedList {
 			data=0;
 			next=null;
 		}
+		public node(int value) {
+			prev=null;
+			data=value;
+			next=null;
+		}
 		
-		
+	}
+	private node head;
+	public void display(){
+		System.out.println("List: ");
+		node trav=head;
+		while(head!=null) {
+			System.out.println(trav.data);
+			trav=trav.next;
+		}
+	}
+	void addFirst(int value){
+		node trav=head;
+		node newnode= new node(value);
+		newnode.next=trav;
+		trav.prev=newnode;
+		head=newnode;
 	}
 	
 	
+	void addLast(int value) {
+		node trav=head;
+		node newnode= new node(value);
+		while(trav.next!=null) {
+			trav=trav.next;
+		}
+		newnode.prev=trav;
+		trav.next=newnode;
+	}
 	
+	void addAtPos(int value,int pos) {
+		
+	}
+	
+	void deleteAll() {
+		head=null;
+	}
+	
+	void deleteFirst(){
+	node trav=head;
+	head=trav.next;
+	}
+	void deleteLast() {
+		node trav=head;
+		while(trav.next!=null) {
+			trav=trav.next;
+		}
+		trav=trav.prev;
+		trav.next=null;
+	}
+	
+	void deleteAtPos(int pos){
+		
+	}
 	public static void main(String[] args) {
 		doublyLinkedList list=new doublyLinkedList();
 		Scanner sc= new Scanner(System.in);
