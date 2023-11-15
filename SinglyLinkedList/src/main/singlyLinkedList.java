@@ -7,7 +7,7 @@ import javax.swing.SingleSelectionModel;
 public class singlyLinkedList {
 
 	static class node{
-		private int data=0;
+		private int data;
 		private node next;
 		
 		public node() {
