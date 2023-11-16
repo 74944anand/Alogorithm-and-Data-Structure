@@ -28,12 +28,13 @@ public class singlyCircularLinkedList {
 	}
 	
 	public void displayAll() {
-		node trav=head;
-		System.out.println("List:");
-		if(trav.next==null) {
+		
+		if(head==null) {
 			System.out.println("Empty List");
 		}
 		else {
+			node trav=head;
+			System.out.println("List:");
 		while(trav.next!=null) {
 		System.out.println(trav.data);
 			trav=trav.next;
@@ -53,25 +54,24 @@ public class singlyCircularLinkedList {
 		singlyCircularLinkedList list= new singlyCircularLinkedList();
 		try(Scanner sc= new Scanner(System.in)){
 		boolean exit=false;	
-			System.out.println("Options:\n"
-					+ "1.Display All data\n"
-					+ "2.Add at First\n"
-					+ "0. Exit");
 		
 				while(!exit) {
 					try {
+						System.out.println("Options:\n"
+								+ "1.Display All data\n"
+								+ "2.Add at First\n"
+								+ "0. Exit");
+					
 						
 						switch (sc.nextInt()) {
 						case 1:
 							list.displayAll();
 							break;
 						case 2:
-							
 							System.out.println("Enter value to be added at first position");
 							list.addFirst(sc.nextInt());
-							sc.nextLine();
+							System.out.println("Added");
 							break;
-
 						case 0:
 							exit=true;
 							break;

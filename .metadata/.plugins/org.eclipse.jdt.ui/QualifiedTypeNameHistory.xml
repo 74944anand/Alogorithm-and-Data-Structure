@@ -5,7 +5,8 @@
     <fullyQualifiedTypeName name="java.util.Arrays"/>
     <fullyQualifiedTypeName name="main.sortedArray"/>
     <fullyQualifiedTypeName name="main.main"/>
-    <fullyQualifiedTypeName name="java.util.Scanner"/>
     <fullyQualifiedTypeName name="javax.swing.SingleSelectionModel"/>
     <fullyQualifiedTypeName name="main.singlyLinkedList"/>
+    <fullyQualifiedTypeName name="java.util.Scanner"/>
+    <fullyQualifiedTypeName name="main.singlyCircularLinkedList"/>
 </qualifiedTypeNameHistroy>
