@@ -76,7 +76,7 @@ public class singlyCircularLinkedList {
 		node prev = null;
 		if(head==null) {
 			System.out.println("Empty Array");
-		}
+		}else {
 		node newnode=new node(val);
 		for(int i=0;i<pos-1;i++) {
 			prev=trav;
@@ -84,6 +84,38 @@ public class singlyCircularLinkedList {
 		}
 		newnode.next=trav;
 		prev.next=newnode;
+	}
+	}
+	public void deleteAll() {
+		head.next=null;
+		head=null;
+	}
+	
+	public void deleteFirst() {
+		node trav=head;
+		trav=trav.next;
+		head=trav;
+		tail.next=head;
+	}
+	public void deleteLast() {
+		
+		node trav=head;
+		node prev=null;
+		while(trav.next!=head) {
+			prev=trav;
+			trav=trav.next;
+		}
+		prev.next=head;
+	}
+	
+	public void deleteAtPos(int pos) {
+		node trav=head;
+		node prev=null;
+		for(int i=0;i<pos-1;i++) {
+			prev=trav;
+			trav=trav.next;
+		}
+		prev.next=trav.next;
 	}
 	
 	public static void main(String[] args) {
@@ -117,16 +149,16 @@ public class singlyCircularLinkedList {
 						list.addAtPosition(sc.nextInt(),sc.nextInt());
 						break;
 					case 5:
-						list.displayAll();
+						list.deleteAll();
 						break;
 					case 6:
-						list.displayAll();
+						list.deleteFirst();
 						break;
 					case 7:
-						list.displayAll();
+						list.deleteLast();
 						break;
 					case 8:
-						list.displayAll();
+						list.deleteAtPos(sc.nextInt());
 						break;
 					case 0:
 						exit = true;
