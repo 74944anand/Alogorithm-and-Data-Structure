@@ -19,6 +19,7 @@ public class singlyLinkedList {
 			next=null;
 		}
 	}
+	private node oldHead;
 	private node head;
 	public singlyLinkedList() {
 		head=null;
@@ -103,6 +104,19 @@ public class singlyLinkedList {
 		trav.next=null;
 	}
 	
+	public void reverseLinkedList() {
+		oldHead=head;
+		head=null;
+		while(oldHead!=null) {
+		node temp=oldHead;
+		oldHead=oldHead.next;
+		temp.next=head;
+		head=temp;
+		}
+		
+	}
+	
+	
 	public static void main(String[] args) {
 		singlyLinkedList list=new singlyLinkedList();
 		Scanner sc= new Scanner(System.in);
@@ -117,6 +131,7 @@ public class singlyLinkedList {
 			System.out.println("6. Delete first");
 			System.out.println("7. Delete Last");
 			System.out.println("8. Delete at paricular position \n");
+			System.out.println("9. Reverse Linked List");
 			
 			switch (sc.nextInt()) {
 			case 1://Display
@@ -146,6 +161,10 @@ public class singlyLinkedList {
 			case 8://Delete at particular position
 				System.out.println("Enter position to be deleted");
 				list.deleteAtPos(sc.nextInt());
+				break;
+				
+			case 9://Reverse Linked List 
+				list.reverseLinkedList();
 				break;
 			default:
 				break;
