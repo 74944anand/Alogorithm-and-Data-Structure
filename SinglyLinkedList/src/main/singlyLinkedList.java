@@ -42,7 +42,6 @@ public class singlyLinkedList {
 			head=newnode;
 		}
 		else {
-			node trav=head;
 			newnode.next=head;
 			head=newnode;
 		}
