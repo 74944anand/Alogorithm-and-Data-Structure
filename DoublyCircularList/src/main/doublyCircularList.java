@@ -2,127 +2,116 @@ package main;
 
 import java.util.Scanner;
 
-public class singlyCircularLinkedList {
+public class doublyCircularList {
 
-	static class node {
+	static class Node {
 		private int data;
-		private node next;
+		private Node prev;
+		private Node next;
 
-		public node() {
+		public Node() {
 			data = 0;
-			next = null;
+			next = prev = null;
 		}
 
-		public node(int value) {
-			data = value;
-			next = null;
-
+		public Node(int val) {
+			data = val;
+			next = prev = null;
 		}
 	}
 
-	private node head;
-	private node tail;
+	private Node head;
 
-	public singlyCircularLinkedList() {
+	public doublyCircularList() {
 		head = null;
+	}
+
+	public boolean isEmpty() {
+		return head == null;
 	}
 
 	public void displayAll() {
 
-		if (head == null) {
-			System.out.println("Empty List");
+		if (isEmpty()) {
+			System.out.println("List is empty");
 		} else {
-			node trav = head;
+			Node trav = head;
 			System.out.println("List:");
-			do {
+			do{
 				System.out.println(trav.data);
 				trav = trav.next;
-			} while (trav.next != head);
-			if (trav.next == head) {
+			}while (trav.next != head);
+			if(trav.next==head) {
 				System.out.println(trav.data);
 			}
 		}
-
 	}
 
-	public void addFirst(int value) {
-		node trav = head;
-		node newnode = new node(value);
-		newnode.next = trav;
-		if (head == null) {
-			tail = newnode;
-			System.out.println("Tail Data");
-			System.out.println(tail.data);
-		}
-		head = newnode;
-	}
-
-	public void addLast(int value) {
-		node newnode = new node(value);
-		if (head == null) {
-			newnode.next = head;
-			head = newnode;
-			tail = newnode;
+	public void addFirst(int val) {
+		Node newNode = new Node(val);
+		if (isEmpty()) {
+			head = newNode;
+			newNode.prev = head;
+			newNode.next = head;
 		} else {
-			newnode.next = head;
-			tail.next = newnode;
-			tail = newnode;
+			Node trav=head;
+			head=newNode;
+			newNode.prev= trav.prev;
+			newNode.next = trav;
+			trav.prev=head;
 		}
+	}
 
+	public void addLast(int val) {
+		Node newNode = new Node(val);
+		if (isEmpty()) {
+			head = newNode;
+			newNode.prev = head;
+			newNode.next = head;
+		}
+		else {
+			Node trav=head;
+			while(trav.next!=head) {
+				trav=trav.next;
+			}
+			newNode.next=trav.next;
+			newNode.prev=trav;
+			trav.next=newNode;
+			head.prev=newNode;
+		}
 	}
 
 	public void addAtPosition(int pos, int val) {
-		node trav = head;
-		node prev = null;
-		if (head == null) {
-			System.out.println("Empty Array");
-		} else {
-			node newnode = new node(val);
-			for (int i = 0; i < pos - 1; i++) {
-				prev = trav;
-				trav = trav.next;
-			}
-			newnode.next = trav;
-			prev.next = newnode;
-		}
+
 	}
 
 	public void deleteAll() {
-		head.next = null;
-		head = null;
+		head.next=null;
+		head.prev=null;
+		head=null;
 	}
 
 	public void deleteFirst() {
-		node trav = head;
-		trav = trav.next;
-		head = trav;
-		tail.next = head;
+		Node trav=head;
+		trav.prev=trav.next.prev;
+		head=trav.next;
+		while(trav.next!=null) {
+			trav=trav.next;
+		}
+		trav.next=head;
 	}
 
 	public void deleteLast() {
 
-		node trav = head;
-		node prev = null;
-		while (trav.next != head) {
-			prev = trav;
-			trav = trav.next;
-		}
-		prev.next = head;
 	}
 
 	public void deleteAtPos(int pos) {
-		node trav = head;
-		node prev = null;
-		for (int i = 0; i < pos - 1; i++) {
-			prev = trav;
-			trav = trav.next;
-		}
-		prev.next = trav.next;
+
 	}
 
 	public static void main(String[] args) {
 
-		singlyCircularLinkedList list = new singlyCircularLinkedList();
+		doublyCircularList list = new doublyCircularList();
 		try (Scanner sc = new Scanner(System.in)) {
 			boolean exit = false;
 
@@ -175,7 +164,6 @@ public class singlyCircularLinkedList {
 			}
 
 		}
-
 	}
 
 }
