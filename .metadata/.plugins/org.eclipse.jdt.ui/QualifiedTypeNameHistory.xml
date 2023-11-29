@@ -11,4 +11,5 @@
     <fullyQualifiedTypeName name="main.singlyCircularLinkedList.node"/>
     <fullyQualifiedTypeName name="java.util.Scanner"/>
     <fullyQualifiedTypeName name="main.doublyList"/>
+    <fullyQualifiedTypeName name="main.doublyCircularList"/>
 </qualifiedTypeNameHistroy>

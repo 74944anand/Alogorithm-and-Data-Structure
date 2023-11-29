@@ -102,7 +102,14 @@ public class doublyCircularList {
 	}
 
 	public void deleteLast() {
-
+		Node trav=head;
+		
+		while(trav.next!=head) {
+			trav=trav.next;
+		}
+		head.prev=trav.prev;
+		trav=trav.prev;
+		trav.next=head;
 	}
 
 	public void deleteAtPos(int pos) {
