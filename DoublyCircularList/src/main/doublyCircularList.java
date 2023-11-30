@@ -55,10 +55,12 @@ public class doublyCircularList {
 			newNode.next = head;
 		} else {
 			Node trav=head;
-			head=newNode;
 			newNode.prev= trav.prev;
 			newNode.next = trav;
-			trav.prev=head;
+			trav.prev.next=newNode;
+			trav.prev=newNode;
+			head=newNode;
+			
 		}
 	}
 
@@ -82,7 +84,15 @@ public class doublyCircularList {
 	}
 
 	public void addAtPosition(int pos, int val) {
-
+		Node trav=head;
+		Node newNode= new Node(val);
+		for(int i=1;i<pos-1;i++) {
+			trav=trav.next;
+		}
+		 newNode.prev=trav;
+		 newNode.next=trav.next;
+		 trav.next.prev=newNode;
+		 trav.next=newNode;
 	}
 
 	public void deleteAll() {
@@ -113,7 +123,13 @@ public class doublyCircularList {
 	}
 
 	public void deleteAtPos(int pos) {
-
+		Node trav=head;
+		
+		for(int i=1;i<pos-1;i++) {
+			trav=trav.next;
+		}
+		trav.next.next.prev=trav;
+		trav.next=trav.next.next;
 	}
 
 	public static void main(String[] args) {
@@ -156,6 +172,7 @@ public class doublyCircularList {
 						list.deleteLast();
 						break;
 					case 8:
+						System.out.println("Enter Position to be deleted");
 						list.deleteAtPos(sc.nextInt());
 						break;
 					case 0:
