@@ -13,8 +13,12 @@
     <fullyQualifiedTypeName name="main.doublyCircularList"/>
     <fullyQualifiedTypeName name="main.doublyCircularList.Node"/>
     <fullyQualifiedTypeName name="javax.management.RuntimeErrorException"/>
-    <fullyQualifiedTypeName name="java.util.Scanner"/>
     <fullyQualifiedTypeName name="main.stack"/>
     <fullyQualifiedTypeName name="java.lang.RuntimeException"/>
     <fullyQualifiedTypeName name="java.lang.IndexOutOfBoundsException"/>
+    <fullyQualifiedTypeName name="main.hashTable.hash"/>
+    <fullyQualifiedTypeName name="java.util.LinkedList"/>
+    <fullyQualifiedTypeName name="java.util.Scanner"/>
+    <fullyQualifiedTypeName name="main.hashTable"/>
+    <fullyQualifiedTypeName name="main.hashTable.pair"/>
 </qualifiedTypeNameHistroy>
