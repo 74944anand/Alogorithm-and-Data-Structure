@@ -141,21 +141,10 @@ public class LinkedList {
 	public void allAll(LinkedList list2) {
 		if(!isNull()) {
 			Node trav=head;
-			Node trav2=list2.head;
-			while(trav!=null) {
-				Node newNode= new Node();
-				if(trav2==null) {
-					newNode.data=trav.data;
-					trav2=newNode;
-					trav=trav.next;	
-				}
-				else {
-					newNode.data=trav.data;
-					trav2.next=newNode;
-					trav2=trav2.next;
-					trav=trav.next;
-				}
+			while(trav.next!=null) {
+				trav=trav.next;
 			}
+			trav.next=list2.head;
 		}
 	}
 	public int getPostion(int val) {

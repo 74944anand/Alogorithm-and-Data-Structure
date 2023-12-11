@@ -52,6 +52,9 @@ public class ImplCircularQueue {
 							System.out.println("Queue is Empty");
 						}
 						break;
+					case 5://Print Queue
+						q.pos();
+						break;
 						
 					}
 					

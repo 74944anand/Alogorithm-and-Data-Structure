@@ -1,9 +1,12 @@
 package main;
 
+import java.util.StringJoiner;
+
 public class CircularQueue implements ICircularQueue {
 
 	private int front;
 	private int rear;
+	private int Size;
 	private String arr[];
 	private int count;
 
@@ -11,55 +14,51 @@ public class CircularQueue implements ICircularQueue {
 		front = -1;
 		rear = -1;
 		count = 0;
+		this.Size=Size;
 		arr = new String[Size];
 	}
 
 	public boolean isEmpty() {
-		if (front == -1 && front == rear) {
-			System.out.println("Queue is Empty");
-			return true;
-		}
-		return false;
+		return front==-1;
 	}
 
 	public boolean isFull() {
-		if (front != -1 && front == rear || front == -1 && rear == arr.length - 1) {
-			System.out.println("Queue is Full");
-			return true;
-		}
-		return false;
+		return front == 0 && rear==Size-1 || front != -1 && rear == front-1;
 	}
 
 	@Override
 	public boolean add(String element) {
 		if (isFull()) {
-			rear=-1;
+			System.out.println("Queue is Full");
 			return false;
 		}
-
-		System.out.println("rear:" + rear);
-		if (rear == arr.length - 1) {
-			rear = -1;
-			System.out.println("rear:" + rear);
+		if(isEmpty()) {
+			front=rear=0;
 		}
-		++rear;
-		arr[rear] = element;
+		else{
+			rear=(rear+1)%Size;
+		}
+		arr[rear]=element;
 		count++;
 		return true;
 	}
 
 	@Override
 	public String remove() {
+		int temp=0 ;
 		if (isEmpty()) {
+			System.out.println("Queue is Empty");
 			return null;
 		}
-		if (front == arr.length - 1) {
-			front = -1;
-			System.out.println("rear:" + rear);
+		if(front==rear) {
+			front=rear=-1;
 		}
-		++front;
+		else {
+			temp=front;
+			front=(front+1)%Size;
+		}
 		count--;
-		return arr[front];
+		return arr[temp];
 	}
 
 	@Override
@@ -76,97 +75,19 @@ public class CircularQueue implements ICircularQueue {
 		if (isEmpty()) {
 			return "";
 		}
-		String Queue = "";
-		if (front == -1) {
-			int temp = front + 1;
-			while (temp != arr.length) {
-				Queue = Queue.concat(arr[temp] + ",");
-				temp++;
-			}
-			return Queue;
-		} else if (front >= 0 && rear == arr.length - 1) {
-			int temp = front+1;
-			while (temp != arr.length) {
-				Queue = Queue.concat(arr[temp] + ",");
-				temp++;
-			}
-			return Queue;
-		} else {
-			String EndQueue = "";
-			String StartQueue = "";
-			int temp = front;
-			if (rear < front && front > 0) {
-				while (temp != arr.length) {
-					EndQueue = EndQueue.concat(arr[temp] + ",");
-					temp++;
-				}
-				temp = 0;
-				while (temp != rear + 1) {
-					StartQueue = EndQueue.concat(arr[temp] + ",");
-					temp++;
-				}
-				Queue = StartQueue.concat(EndQueue);
-				return Queue;
-			}
-
-		}
-		front=-1;
-		rear = 0;
-		isEmpty();
-		return "";
-
+		 StringJoiner joiner = new StringJoiner(", ");
+		    int i = front;
+		    do {
+		        joiner.add(arr[i]);
+		        i = (i + 1) % Size;
+		    } while (i != (rear + 1) % Size);
+	
+		    
+		   return joiner.toString();
 	}
-
-//	public String toString() {
-//		if(isEmpty()) {
-//			return "";
-//		}
-//		String Queue="";
-//		if(front==-1) {
-//			for(int i=0;i<=rear;i++) {
-//				Queue=Queue.concat(arr[i]+",");
-//			}	
-//			System.out.println("Inside full1 queue" + Queue);
-//			return Queue;
-//			
-//		}
-//		if(rear>front && front>=0) {
-//			for(int i=front+1;i<=rear;i++) {
-//				Queue=Queue.concat(arr[i]+",");
-//			}	
-//			System.out.println("Inside full2 queue" + Queue);
-//			return Queue;
-//			
-//		}
-//		else if(front!=rear){
-//			String EndQueue="";
-//			String StartQueue="";
-//			int start=front;
-//				if(rear<front && front>0) {					
-//					while(start!=arr.length-1) {
-//						EndQueue=EndQueue.concat(arr[start]+ ",");
-//						start++;
-//			
-//					}
-//					System.out.println("Inside front endqueue"+ EndQueue);
-//				}
-//				start=0;
-//				while(start!=rear) {
-//					StartQueue=StartQueue.concat(arr[start]+ ",");
-//					start++;
-//				}
-//				System.out.println("Inside front startqueue"+ StartQueue);
-//				Queue=StartQueue.concat(EndQueue);
-//			}
-//		else if(front==rear){
-//			front=rear=-1;
-//			isEmpty();
-//			return "";
-//		}
-//		
-//		
-//		return Queue;
-//	}
-//	
+	
+	public void pos() {
+		System.out.println("front: "+ front+ " Rear: "+ rear);
+	}
 
 }
